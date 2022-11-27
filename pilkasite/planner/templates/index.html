@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Meczyki 2.0 Home</h1>
+  <p>Witaj na stronie meczyków stworzoną przez <em>Dzika</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>W bazie mamy aktualnie rekordów:</p>
+  <ul>
+    <li><strong>Graczy:</strong> {{ num_players }}</li>
+    <li><strong>Gier:</strong> {{ num_games }}</li>
+  </ul>
+{% endblock %}
+

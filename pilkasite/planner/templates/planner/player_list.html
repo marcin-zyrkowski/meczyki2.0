@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lista graczy</h1>
+  {% if player_list %}
+  <ul>
+    {% for player in player_list %}
+      <li>
+	      {# <a href="{{ player.get_absolute_url }}">{{ player.surname }}</a> ({{player.name}} {{player.surname}}) #}
+	      <a href="{{ player.get_absolute_url }}">{{ player.username}}</a> ({{player.name}} {{player.surname}}) {% if player.is_permanent %}permi{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Nie ma żadnych graczy w bazie.</p>
+  {% endif %}
+{% endblock %}
+
