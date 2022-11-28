@@ -17,3 +17,6 @@ class PlayerListView(generic.ListView):
 
 class PlayerDetailView(generic.DetailView):
     model = Player
+
+class GameListView(generic.ListView):
+    model = Game

@@ -36,7 +36,11 @@ class Squad(models.Model):
     game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f'player {self.player.username} played on {self.game.date} white={self.is_player_white}'
+        kolor = 'czarnych'
+        if self.is_player_white:
+            kolor = 'białych'
+
+        return f'{self.game.date} grał w {kolor} '
 
 
     def get_absolute_url(self):

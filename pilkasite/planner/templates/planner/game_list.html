@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lista gier</h1>
+  {% if game_list %}
+  <ul>
+    {% for game in game_list %}
+      <li>
+	    <a href="">{{ game.date}}</a> ({{game.notes}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Nie ma żadnych gier w bazie.</p>
+  {% endif %}
+{% endblock %}

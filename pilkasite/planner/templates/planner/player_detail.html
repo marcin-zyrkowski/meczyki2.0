@@ -9,5 +9,14 @@
   <p><strong>email:</strong> {{ player.email }}</p>
   <p><strong>Permanent:</strong> {% if player.is_permanent %}YES{% else %}NO{% endif %}</p>
 
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Mecze</h4>
+
+    {% for squad in player.squad_set.all %}
+      <p>{{ squad }}</p>
+    {% endfor %}
+  </div>
+
+
 {% endblock %}
 
