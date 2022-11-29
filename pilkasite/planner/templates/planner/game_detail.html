@@ -9,18 +9,18 @@
     <div><h4>Permis</h4>
     {% for squad in game.squad_set.all %}
       {% if squad.player.is_permanent %}  
-        <p>{{ squad.player.username }} grał w 
-            {% if squad.is_player_white %} białych 
-            {% else %} czarnych {% endif %}</p>
+        <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a>
+            {% if squad.is_player_white %} biali 
+            {% else %} czarni {% endif %}</p>
       {% endif %}
     {% endfor %}
     </div>
     <div><h4>Zastępcy</h4>
         {% for squad in game.squad_set.all %}
             {% if not squad.player.is_permanent %}  
-                <p>{{ squad.player.username }} grał w 
-                    {% if squad.is_player_white %} białych 
-                    {% else %} czarnych {% endif %}</p>
+                <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a>
+                    {% if squad.is_player_white %} biali 
+                    {% else %} czarni {% endif %}</p>
             {% endif %}
         {% endfor %}
     </div>
