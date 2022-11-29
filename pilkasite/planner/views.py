@@ -20,3 +20,6 @@ class PlayerDetailView(generic.DetailView):
 
 class GameListView(generic.ListView):
     model = Game
+
+class GameDetailView(generic.DetailView):
+    model = Game    

@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Gra: {{ game.date }}</h1>
+  <p><strong>Notatki:</strong> {{ game.notes }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h2>Zawodnicy</h2>
+    <div><h4>Permis</h4>
+    {% for squad in game.squad_set.all %}
+      {% if squad.player.is_permanent %}  
+        <p>{{ squad.player.username }} grał w 
+            {% if squad.is_player_white %} białych 
+            {% else %} czarnych {% endif %}</p>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <div><h4>Zastępcy</h4>
+        {% for squad in game.squad_set.all %}
+            {% if not squad.player.is_permanent %}  
+                <p>{{ squad.player.username }} grał w 
+                    {% if squad.is_player_white %} białych 
+                    {% else %} czarnych {% endif %}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    
+  </div>
+
+{% endblock %}
+

@@ -6,7 +6,7 @@
   <ul>
     {% for game in game_list %}
       <li>
-	    <a href="">{{ game.date}}</a> ({{game.notes}})
+	    <a href="{{ game.get_absolute_url }}">{{ game.date}}</a> ({{game.notes}})
       </li>
     {% endfor %}
   </ul>

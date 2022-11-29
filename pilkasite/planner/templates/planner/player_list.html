@@ -6,7 +6,6 @@
   <ul>
     {% for player in player_list %}
       <li>
-	      {# <a href="{{ player.get_absolute_url }}">{{ player.surname }}</a> ({{player.name}} {{player.surname}}) #}
 	      <a href="{{ player.get_absolute_url }}">{{ player.username}}</a> ({{player.name}} {{player.surname}}) {% if player.is_permanent %}permi{% endif %}
       </li>
     {% endfor %}
