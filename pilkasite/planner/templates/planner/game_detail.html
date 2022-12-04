@@ -3,30 +3,25 @@
 {% block content %}
   <h1>Gra: {{ game.date }}</h1>
   <p><strong>Notatki:</strong> {{ game.notes }}</p>
+  <p><b>Zapisanych graczy: {{game.squad_set.count}}</b></p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h2>Zawodnicy</h2>
-    <div><h4>Permis</h4>
+    <div>
+      
     {% for squad in game.squad_set.all %}
-      {% if squad.player.is_permanent %}  
-        <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a>
-            {% if squad.is_player_white %} biali 
-            {% else %} czarni {% endif %}</p>
+      {% if squad.substitution_order > 0 %}
+        <p>
+          <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a>
+            {{squad.substitution_order}} 
+            (<a href="{{ squad.absent_player.get_absolute_url }}">{{ squad.absent_player.username }}</a>)
+        </p>
+      {% else %}
+        <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a></p>
       {% endif %}
+      
     {% endfor %}
     </div>
-    <div><h4>Zastępcy</h4>
-        {% for squad in game.squad_set.all %}
-            {% if not squad.player.is_permanent %}  
-                <p><a href="{{ squad.player.get_absolute_url }}">{{ squad.player.username }}</a>
-                    {% if squad.is_player_white %} biali 
-                    {% else %} czarni {% endif %}</p>
-            {% endif %}
-        {% endfor %}
-    </div>
-    
-    
-  </div>
 
 {% endblock %}
 

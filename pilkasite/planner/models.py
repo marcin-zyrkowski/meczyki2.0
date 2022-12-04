@@ -13,7 +13,6 @@ class Player(models.Model):
         return f'{self.name} {self.surname} aka {self.username}'
 
     def get_absolute_url(self):
-        """Returns the URL to access a particular instance of the model."""
         return reverse('player-detail', args=[str(self.id)])
 
 class Game(models.Model):
@@ -23,9 +22,7 @@ class Game(models.Model):
     def __str__(self):
         return f'game at {self.date}'
 
-
     def get_absolute_url(self):
-        """Returns the URL to access a particular instance of the model."""
         return reverse('game-detail', args=[str(self.id)])
 
 
@@ -34,6 +31,8 @@ class Squad(models.Model):
     notes = models.TextField(max_length=1000, blank=True, default='')
     player = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True)
+    absent_player = models.OneToOneField(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='absent_player')
+    substitution_order = models.SmallIntegerField(default=0)
 
     def __str__(self):
         kolor = 'czarnych'
@@ -44,5 +43,4 @@ class Squad(models.Model):
 
 
     def get_absolute_url(self):
-        """Returns the URL to access a particular instance of the model."""
         return reverse('squad-detail', args=[str(self.id)])
