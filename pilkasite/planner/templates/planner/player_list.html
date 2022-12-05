@@ -3,11 +3,25 @@
 {% block content %}
   <h1>Lista graczy</h1>
   {% if player_list %}
+  <h3>Stali gracze</h3>
   <ul>
     {% for player in player_list %}
-      <li>
-	      <a href="{{ player.get_absolute_url }}">{{ player.username}}</a> ({{player.name}} {{player.surname}}) {% if player.is_permanent %}permi{% endif %}
-      </li>
+      {% if player.is_permanent %}
+        <li>
+          <a href="{{ player.get_absolute_url }}">{{ player.username}}</a> ({{player.name}} {{player.surname}}) {% if player.is_permanent %}permi{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  
+  <h3>Zastępcy</h3>
+  <ul>
+    {% for player in player_list %}
+      {% if not player.is_permanent %}
+        <li>
+          <a href="{{ player.get_absolute_url }}">{{ player.username}}</a> ({{player.name}} {{player.surname}}) {% if player.is_permanent %}permi{% endif %}
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
   {% else %}
