@@ -1,25 +1,33 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Player, Game, Squad
 
+
+@login_required
 def index(request):
     num_players = Player.objects.all().count()
     num_games = Game.objects.all().count()
     context = {
-        'num_players' : num_players,
-        'num_games' : num_games,
+        'num_players': num_players,
+        'num_games': num_games,
     }
 
     return render(request, 'index.html', context=context)
 
-class PlayerListView(generic.ListView):
+
+class PlayerListView(LoginRequiredMixin, generic.ListView):
     model = Player
 
-class PlayerDetailView(generic.DetailView):
+
+class PlayerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Player
 
-class GameListView(generic.ListView):
+
+class GameListView(LoginRequiredMixin, generic.ListView):
     model = Game
 
-class GameDetailView(generic.DetailView):
-    model = Game    
+
+class GameDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Game
